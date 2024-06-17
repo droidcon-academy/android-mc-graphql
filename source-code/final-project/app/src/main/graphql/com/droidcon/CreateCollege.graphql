@@ -1,0 +1,8 @@
+mutation CreateCollege($name: String!, $location:String!, $establishedYear:String!) {
+    createCollege(establishedYear: $establishedYear, location: $location, name: $name) {
+        establishedYear
+        id
+        location
+        name
+    }
+}

@@ -1,0 +1,10 @@
+subscription StudentAdded($collegeId: Int!) {
+    studentAdded(collegeId: $collegeId) {
+        collegeId
+        dob
+        gender
+        id
+        name
+        profileUrl
+    }
+}

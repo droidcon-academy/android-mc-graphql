@@ -1,0 +1,15 @@
+query PaginationColleges($limit: Int!,$skip:Int! ) {
+    paginationColleges(limit: $limit, skip: $skip) {
+        colleges {
+            establishedYear
+            id
+            location
+            name
+            profileUrl
+        }
+        nextPage
+        limit
+        size
+        total
+    }
+}

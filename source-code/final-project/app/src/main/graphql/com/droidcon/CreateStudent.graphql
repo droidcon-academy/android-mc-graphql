@@ -1,0 +1,10 @@
+mutation CreateStudent($collegeId:Int!, $dob:String!, $gender:String!, $name:String!, $profileUrl:String! ) {
+    createStudent(collegeId: $collegeId, dob: $dob, gender: $gender, name:$name, profileUrl: $profileUrl) {
+        collegeId
+        dob
+        gender
+        id
+        name
+        profileUrl
+    }
+}

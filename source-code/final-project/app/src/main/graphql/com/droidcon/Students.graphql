@@ -1,0 +1,10 @@
+query Students {
+    students {
+        collegeId
+        dob
+        gender
+        name
+        profileUrl
+        id
+    }
+}

@@ -1,0 +1,8 @@
+query Colleges {
+     colleges {
+       id
+       name
+       establishedYear
+       location
+     }
+}
