@@ -1,4 +1,4 @@
-subscription StudentAdded($collegeId: Int!) {
+subscription SubscribeStudent($collegeId: Int!) {
     studentAdded(collegeId: $collegeId) {
         collegeId
         dob

@@ -1,4 +1,4 @@
-query Colleges {
+query GetColleges {
      colleges {
        id
        name

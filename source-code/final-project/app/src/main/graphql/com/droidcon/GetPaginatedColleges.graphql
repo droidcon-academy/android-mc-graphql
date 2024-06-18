@@ -1,4 +1,4 @@
-query PaginationColleges($limit: Int!,$skip:Int! ) {
+query GetPaginatedColleges($limit: Int!,$skip:Int! ) {
     paginationColleges(limit: $limit, skip: $skip) {
         colleges {
             establishedYear

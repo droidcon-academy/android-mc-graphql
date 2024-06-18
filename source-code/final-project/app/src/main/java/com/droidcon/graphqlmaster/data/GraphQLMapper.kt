@@ -1,15 +1,15 @@
 package com.droidcon.graphqlmaster.data
 
-import com.droidcon.CollegesQuery
 import com.droidcon.CreateCollegeMutation
 import com.droidcon.CreateStudentMutation
-import com.droidcon.PaginationCollegesQuery
+import com.droidcon.GetCollegesQuery
+import com.droidcon.GetPaginatedCollegesQuery
 import com.droidcon.StudentsQuery
 import com.droidcon.graphqlmaster.domain.model.CollegeEntity
 import com.droidcon.graphqlmaster.domain.model.PaginationCollegeEntity
 import com.droidcon.graphqlmaster.domain.model.StudentEntity
 
-fun CollegesQuery.College.toCollegeEntity(): CollegeEntity {
+fun GetCollegesQuery.College.toCollegeEntity(): CollegeEntity {
     return CollegeEntity(
        id = id,
         name = name,
@@ -18,7 +18,7 @@ fun CollegesQuery.College.toCollegeEntity(): CollegeEntity {
     )
 }
 
-fun PaginationCollegesQuery.PaginationColleges.toPaginationCollegeEntity(): PaginationCollegeEntity {
+fun GetPaginatedCollegesQuery.PaginationColleges.toPaginationCollegeEntity(): PaginationCollegeEntity {
     return PaginationCollegeEntity(
         total = total,
         skip= size,
@@ -28,7 +28,7 @@ fun PaginationCollegesQuery.PaginationColleges.toPaginationCollegeEntity(): Pagi
     )
 }
 
-fun PaginationCollegesQuery.College.toCollegeEntity(): CollegeEntity {
+fun GetPaginatedCollegesQuery.College.toCollegeEntity(): CollegeEntity {
     return CollegeEntity(
         id = id,
         name = name,
@@ -37,7 +37,7 @@ fun PaginationCollegesQuery.College.toCollegeEntity(): CollegeEntity {
     )
 }
 
-fun StudentsQuery.Student.toCollegeEntity(): StudentEntity {
+fun StudentsQuery.Student.toStudentEntity(): StudentEntity {
     return StudentEntity(
         id = id,
         name = name,

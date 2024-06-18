@@ -2,18 +2,16 @@ package com.droidcon.graphqlmaster.data
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.ApolloResponse
-import com.droidcon.CollegesQuery
 import com.droidcon.CreateCollegeMutation
 import com.droidcon.CreateStudentMutation
-import com.droidcon.PaginationCollegesQuery
-import com.droidcon.StudentAddedSubscription
+import com.droidcon.GetCollegesQuery
+import com.droidcon.GetPaginatedCollegesQuery
 import com.droidcon.StudentsQuery
+import com.droidcon.SubscribeStudentSubscription
 import com.droidcon.graphqlmaster.data.dto.CollegeRequestDTO
 import com.droidcon.graphqlmaster.data.dto.StudentRequestDTO
-import com.droidcon.graphqlmaster.di.Apollo
-import com.droidcon.graphqlmaster.di.ApolloWS
-import com.droidcon.graphqlmaster.domain.model.CollegeEntity
 import com.droidcon.graphqlmaster.domain.IGraphQLClient
+import com.droidcon.graphqlmaster.domain.model.CollegeEntity
 import com.droidcon.graphqlmaster.domain.model.PaginationCollegeEntity
 import com.droidcon.graphqlmaster.domain.model.StudentEntity
 import kotlinx.coroutines.flow.Flow
@@ -25,7 +23,7 @@ class ApolloGraphQlClientImpl (
 ): IGraphQLClient {
     override suspend fun getColleges(): List<CollegeEntity> {
         return apolloClient
-            .query(CollegesQuery())
+            .query(GetCollegesQuery())
             .execute()
             .data
             ?.colleges
@@ -35,7 +33,7 @@ class ApolloGraphQlClientImpl (
 
     override suspend fun getPaginationColleges(limit: Int, skip: Int): PaginationCollegeEntity? {
         return apolloClient
-            .query(PaginationCollegesQuery(limit, skip))
+            .query(GetPaginatedCollegesQuery(limit, skip))
             .execute()
             .data
             ?.paginationColleges?.toPaginationCollegeEntity()
@@ -47,7 +45,7 @@ class ApolloGraphQlClientImpl (
             .execute()
             .data
             ?.students
-            ?.map { it.toCollegeEntity() }
+            ?.map { it.toStudentEntity() }
             ?: emptyList()
     }
 
@@ -79,11 +77,10 @@ class ApolloGraphQlClientImpl (
     }
 
     override fun subscribeToStudentAdded(collegeId: Int): Flow<StudentEntity> = flow {
-        val subscription = StudentAddedSubscription(collegeId)
+        val subscription = SubscribeStudentSubscription(collegeId)
         apolloClientWS.subscription(subscription).toFlow()
-            .collect { response: ApolloResponse<StudentAddedSubscription.Data> ->
+            .collect { response: ApolloResponse<SubscribeStudentSubscription.Data> ->
                 response.data?.studentAdded?.let {
-                    println("+++++$it")
                     emit(StudentEntity(
                         id = it.id,
                         name = it.name,
