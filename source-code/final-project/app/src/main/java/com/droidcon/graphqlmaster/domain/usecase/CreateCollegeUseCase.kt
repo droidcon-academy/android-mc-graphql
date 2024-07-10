@@ -9,7 +9,7 @@ class CreateCollegeUseCase @Inject constructor (
     private val graphQLClient: IGraphQLClient
 ) {
 
-    suspend fun execute(collegeRequestDTO: CollegeRequestDTO):CollegeEntity{
+    suspend fun execute(collegeRequestDTO: CollegeRequestDTO):CollegeEntity?{
         return graphQLClient.addCollege(collegeRequestDTO)
     }
 }

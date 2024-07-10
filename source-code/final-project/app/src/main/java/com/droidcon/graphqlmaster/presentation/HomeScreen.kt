@@ -56,7 +56,7 @@ fun HomeScreen(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp).clickable {
-                    navController.navigate(NavigationItem.STUDENT.route)
+                    navController.navigate(NavigationItem.STUDENT.createRoute(0))
                 }
 
         ) {

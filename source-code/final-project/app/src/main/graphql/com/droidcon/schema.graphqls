@@ -65,7 +65,7 @@ type ResponseType {
 }
 
 type Subscription {
-  studentAdded(collegeId: Int!): StudentType!
+  subscribeStudent(collegeId: Int!): StudentType!
 }
 
 schema {

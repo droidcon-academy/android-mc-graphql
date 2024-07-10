@@ -33,8 +33,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.droidcon.graphqlmaster.component.Button
-import com.droidcon.graphqlmaster.component.Button.PrimaryButton
+import com.droidcon.graphqlmaster.component.IconButton
+import com.droidcon.graphqlmaster.component.PrimaryButton
 import com.droidcon.graphqlmaster.data.dto.CollegeRequestDTO
 import com.droidcon.graphqlmaster.domain.model.CollegeEntity
 
@@ -100,7 +100,7 @@ private fun CollegeScreenContent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
-                                    navController.navigate(NavigationItem.STUDENT.route)
+                                    navController.navigate(NavigationItem.STUDENT.createRoute(collegeId = college.id))
                                     onSelectCollege(college.id) }
                                 .padding(16.dp)
 
@@ -108,7 +108,7 @@ private fun CollegeScreenContent(
                     }
                 }
                 Box(modifier = Modifier.padding(16.dp).align(Alignment.End)) {
-                    Button.IconButton{
+                    IconButton{
                         showSheet = true
                     }
                 }

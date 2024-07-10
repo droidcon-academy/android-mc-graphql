@@ -53,14 +53,16 @@ fun AppNavHost(
         }
 
 
-        composable(NavigationItem.STUDENT.route) {
-            val viewModel = hiltViewModel<StudentScreenViewModel>()
+        composable(NavigationItem.STUDENT.route+"/{collegeId}") {
+                navBackStackEntry ->
+            val viewModel: StudentScreenViewModel = hiltViewModel(navBackStackEntry)
             val data by viewModel.data.collectAsState()
             val isLoading by viewModel.isLoading.collectAsState()
+
             Column(modifier = Modifier) {
                 StudentScreen(
                     data = data,
-                            isLoading = isLoading
+                    isLoading = isLoading
                 )
             }
         }
@@ -75,7 +77,9 @@ enum class Screen {
 }
 sealed class NavigationItem(val route: String) {
     data object COLLEGE : NavigationItem(Screen.COLLEGE.name)
-    data object STUDENT : NavigationItem(Screen.STUDENT.name)
+    data object STUDENT : NavigationItem(Screen.STUDENT.name) {
+        fun createRoute(collegeId: Int) = Screen.STUDENT.name+"/$collegeId"
+    }
     data object PAGINATIONCOLLEGE : NavigationItem(Screen.PAGINATION_COLLEGE.name)
     data object HOME : NavigationItem(Screen.HOME.name)
 }

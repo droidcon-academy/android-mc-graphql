@@ -19,7 +19,6 @@ import javax.inject.Inject
 class CollegeScreenViewModel @Inject constructor(
     private val getCollegeUseCase: GetCollegeUseCase,
     private val addCollegeUseCase: CreateCollegeUseCase,
-    private val getStudentUseCase: GetStudentUseCase
 ): ViewModel() {
 
     private val _state = MutableStateFlow(CollegeState())

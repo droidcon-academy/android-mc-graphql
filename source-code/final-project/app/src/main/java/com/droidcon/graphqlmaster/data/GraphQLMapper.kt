@@ -4,6 +4,7 @@ import com.droidcon.CreateCollegeMutation
 import com.droidcon.CreateStudentMutation
 import com.droidcon.GetCollegesQuery
 import com.droidcon.GetPaginatedCollegesQuery
+import com.droidcon.GetStudentByCollegeIdQuery
 import com.droidcon.StudentsQuery
 import com.droidcon.graphqlmaster.domain.model.CollegeEntity
 import com.droidcon.graphqlmaster.domain.model.PaginationCollegeEntity
@@ -38,6 +39,17 @@ fun GetPaginatedCollegesQuery.College.toCollegeEntity(): CollegeEntity {
 }
 
 fun StudentsQuery.Student.toStudentEntity(): StudentEntity {
+    return StudentEntity(
+        id = id,
+        name = name,
+        dob = dob,
+        collegeId = collegeId,
+        gender = gender,
+        profileUrl = profileUrl
+    )
+}
+
+fun GetStudentByCollegeIdQuery.StudentsByCollegeId.toStudentEntity(): StudentEntity {
     return StudentEntity(
         id = id,
         name = name,

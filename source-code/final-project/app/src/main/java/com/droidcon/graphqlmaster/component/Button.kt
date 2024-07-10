@@ -22,58 +22,55 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.droidcon.graphqlmaster.ui.theme.Purple40
-
-object Button {
-    @Composable
-    fun PrimaryButton(
-        modifier: Modifier = Modifier,
-        ctaText: String,
-        onClick: () -> Unit
+@Composable
+fun PrimaryButton(
+    modifier: Modifier = Modifier,
+    ctaText: String,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier
+            .height(44.dp)
+            .fillMaxWidth()
+            .clip(shape = RoundedCornerShape(24.dp))
+            .background(Purple40)
+            .clickable {
+                onClick()
+            },
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Column(
-            modifier
-                .height(44.dp)
-                .fillMaxWidth()
-                .clip(shape = RoundedCornerShape(24.dp))
-                .background(Purple40)
-                .clickable {
-                    onClick()
-                },
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = ctaText,
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    lineHeight = 24.sp
-                ),
-                color = Color.White,
-                textAlign = TextAlign.Center
-            )
-        }
-
+        Text(
+            text = ctaText,
+            style = TextStyle(
+                fontSize = 16.sp,
+                lineHeight = 24.sp
+            ),
+            color = Color.White,
+            textAlign = TextAlign.Center
+        )
     }
 
-    @Composable
-    fun IconButton(
-        modifier: Modifier = Modifier,
-        onClick: () -> Unit
-    ) {
-        Column(
-            modifier
-                .height(56.dp)
-                .width(56.dp)
-                .clip(shape = RoundedCornerShape(24.dp))
-                .background(Purple40)
-                .clickable {
-                    onClick()
-                },
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Icon(Icons.Filled.Add, "menu", tint = Color.White)
-        }
+}
 
+@Composable
+fun IconButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier
+            .height(56.dp)
+            .width(56.dp)
+            .clip(shape = RoundedCornerShape(24.dp))
+            .background(Purple40)
+            .clickable {
+                onClick()
+            },
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(Icons.Filled.Add, "menu", tint = Color.White)
     }
+
 }

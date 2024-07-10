@@ -9,7 +9,7 @@ class CreateStudentUseCase @Inject constructor (
     private val graphQLClient: IGraphQLClient
 ) {
 
-    suspend fun execute(studentRequestDTO: StudentRequestDTO):StudentEntity{
+    suspend fun execute(studentRequestDTO: StudentRequestDTO):StudentEntity?{
         return graphQLClient.addStudent(studentRequestDTO)
     }
 }

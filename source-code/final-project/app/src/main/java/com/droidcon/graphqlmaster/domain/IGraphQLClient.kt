@@ -10,10 +10,11 @@ import kotlinx.coroutines.flow.Flow
 interface IGraphQLClient {
     suspend fun getColleges():List<CollegeEntity>
     suspend fun getPaginationColleges(limit: Int, skip:Int): PaginationCollegeEntity?
-    suspend fun getStudents(collegeId:Int):List<StudentEntity>
+    suspend fun getStudents():List<StudentEntity>
+    suspend fun getStudentByCollegeId(collegeId:Int):List<StudentEntity>
 
-    suspend fun addStudent(studentRequestDTO: StudentRequestDTO):StudentEntity
-    suspend fun addCollege(collegeRequestDTO: CollegeRequestDTO):CollegeEntity
+    suspend fun addStudent(studentRequestDTO: StudentRequestDTO):StudentEntity?
+    suspend fun addCollege(collegeRequestDTO: CollegeRequestDTO):CollegeEntity?
 
     fun subscribeToStudentAdded(collegeId: Int): Flow<StudentEntity>
 }

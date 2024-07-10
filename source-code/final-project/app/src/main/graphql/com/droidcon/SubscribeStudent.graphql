@@ -1,5 +1,5 @@
 subscription SubscribeStudent($collegeId: Int!) {
-    studentAdded(collegeId: $collegeId) {
+    subscribeStudent(collegeId: $collegeId) {
         collegeId
         dob
         gender

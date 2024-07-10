@@ -7,8 +7,7 @@ import javax.inject.Inject
 class GetStudentUseCase @Inject constructor (
     private val graphQLClient: IGraphQLClient
 ) {
-
-    suspend fun execute(collegeId: Int):List<StudentEntity>{
-        return graphQLClient.getStudents(collegeId).sortedBy { it.id }
+    suspend fun execute():List<StudentEntity>{
+        return graphQLClient.getStudents().sortedBy { it.id }
     }
 }
