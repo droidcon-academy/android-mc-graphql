@@ -1,0 +1,10 @@
+query GetStudentByCollegeId($collegeId: Int!) {
+    studentsByCollegeId(collegeId: $collegeId) {
+        collegeId
+        dob
+        gender
+        name
+        profileUrl
+        id
+    }
+}
