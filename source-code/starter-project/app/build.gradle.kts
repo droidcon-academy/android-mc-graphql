@@ -52,12 +52,6 @@ android {
     }
 }
 
-apollo {
-    service("service") {
-        packageName.set("com.droidcon")
-    }
-}
-
 dependencies {
 
     implementation(libs.androidx.core.ktx)

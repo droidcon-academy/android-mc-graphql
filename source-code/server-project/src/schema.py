@@ -91,7 +91,7 @@ class Query:
     @strawberry.field
     async def students_by_college_id(self, college_id: int) -> List[StudentType]:
         db = get_db()
-        students = db.query(Student).filter(Student.college_id == college_id).first()
+        students = db.query(Student).filter(Student.college_id == college_id).all()
         return [StudentType(id=student.id, name=student.name, dob=student.dob, gender=student.gender,
                             profile_url=student.profile_url, college_id=student.college_id, ) for
                 student in students]
@@ -100,9 +100,9 @@ class Query:
 @strawberry.type
 class Mutation:
     @strawberry.mutation
-    async def create_college(self, name: str, location: str, established_year: str) -> CollegeType:
+    async def create_college(self, name: str, location: str, established_year: str, profile_url: str) -> CollegeType:
         db = get_db()
-        college = College(name=name, location=location, established_year=established_year)
+        college = College(name=name, location=location, established_year=established_year, profile_url=profile_url)
         db.add(college)
         db.commit()
         db.refresh(college)

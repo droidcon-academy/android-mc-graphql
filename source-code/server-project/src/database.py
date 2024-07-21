@@ -1,21 +1,13 @@
-import os
-
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from . import models
-from .config import POOL_SIZE, MAX_OVERFLOW, POOL_TIMEOUT, POOL_RECYCLE
-from dotenv import load_dotenv
+from src.config import POOL_SIZE, MAX_OVERFLOW, POOL_TIMEOUT, POOL_RECYCLE, POOL_PRE_PING, DATABASE_URL_LOCAL
+from src.models import Base
 
-load_dotenv()
-engine = create_engine(os.environ.get('DATABASE_URL'), pool_size=POOL_SIZE, max_overflow=MAX_OVERFLOW, pool_timeout=POOL_TIMEOUT,
+engine = create_engine(DATABASE_URL_LOCAL, pool_size=POOL_SIZE, max_overflow=MAX_OVERFLOW, pool_timeout=POOL_TIMEOUT,
                        pool_recycle=POOL_RECYCLE)
-
+Base.metadata.create_all(bind=engine)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-models.Base.metadata.create_all(bind=engine)
-Base = declarative_base()
 
 
 def get_db():

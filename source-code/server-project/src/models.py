@@ -4,6 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+
 class College(Base):
     __tablename__ = "colleges"
     id = Column(Integer, primary_key=True, index=True)
