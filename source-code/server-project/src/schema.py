@@ -26,6 +26,15 @@ class StudentType:
     profile_url: str
     gender: str
 
+@strawberry.type
+class FragmentCollegeType:
+    id: int
+    name: str
+    location: str
+    established_year: str
+    profile_url: str
+    students: List[StudentType]
+
 
 @strawberry.type
 class PaginationCollegeType:
@@ -43,6 +52,17 @@ class ResponseType:
 
 @strawberry.type
 class Query:
+
+    @strawberry.field
+    async def college_with_students(self, college_id: int) -> FragmentCollegeType:
+        db = get_db()
+        college = db.query(College).filter(College.id == college_id).first()
+        students = db.query(Student).filter(Student.college_id == college_id).all()
+        student_list = [StudentType(id=student.id, name=student.name, dob=student.dob, gender=student.gender,
+                                    profile_url=student.profile_url, college_id=student.college_id) for student in students]
+        return FragmentCollegeType(id=college.id, name=college.name, location=college.location,
+                           established_year=college.established_year, profile_url=college.profile_url, students=student_list)
+
     @strawberry.field
     async def colleges(self) -> List[CollegeType]:
         db = get_db()
