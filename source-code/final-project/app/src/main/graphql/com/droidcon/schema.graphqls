@@ -1,4 +1,6 @@
 type Query {
+  collegeWithStudents(collegeId: Int!): FragmentCollegeType!
+
   colleges: [CollegeType!]!
 
   paginationColleges(skip: Int! = 0, limit: Int! = 5): PaginationCollegeType!
@@ -10,6 +12,34 @@ type Query {
   studentById(studentId: Int!): StudentType!
 
   studentsByCollegeId(collegeId: Int!): [StudentType!]!
+}
+
+type FragmentCollegeType {
+  id: Int!
+
+  name: String!
+
+  location: String!
+
+  establishedYear: String!
+
+  profileUrl: String!
+
+  students: [StudentType!]!
+}
+
+type StudentType {
+  id: Int!
+
+  name: String!
+
+  dob: String!
+
+  collegeId: Int!
+
+  profileUrl: String!
+
+  gender: String!
 }
 
 type CollegeType {
@@ -36,22 +66,8 @@ type PaginationCollegeType {
   colleges: [CollegeType!]!
 }
 
-type StudentType {
-  id: Int!
-
-  name: String!
-
-  dob: String!
-
-  collegeId: Int!
-
-  profileUrl: String!
-
-  gender: String!
-}
-
 type Mutation {
-  createCollege(name: String!, location: String!, establishedYear: String!): CollegeType!
+  createCollege(name: String!, location: String!, establishedYear: String!, profileUrl: String!): CollegeType!
 
   deleteCollege(collegeId: Int!): ResponseType!
 

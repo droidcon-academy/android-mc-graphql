@@ -4,5 +4,6 @@ query GetColleges {
        name
        establishedYear
        location
+       profileUrl
      }
 }

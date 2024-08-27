@@ -15,7 +15,8 @@ fun GetCollegesQuery.College.toCollegeEntity(): CollegeEntity {
        id = id,
         name = name,
         location = location,
-        establishedYear = establishedYear
+        establishedYear = establishedYear,
+        profileUrl = profileUrl
     )
 }
 
@@ -34,7 +35,8 @@ fun GetPaginatedCollegesQuery.College.toCollegeEntity(): CollegeEntity {
         id = id,
         name = name,
         location = location,
-        establishedYear = establishedYear
+        establishedYear = establishedYear,
+        profileUrl = profileUrl
     )
 }
 
@@ -76,6 +78,7 @@ fun CreateCollegeMutation.CreateCollege.toCreateCollegeEntity(): CollegeEntity {
         id = id,
         name = name,
         location = location,
-        establishedYear = establishedYear
+        establishedYear = establishedYear,
+        profileUrl = profileUrl
     )
 }

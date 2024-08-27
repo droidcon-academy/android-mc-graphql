@@ -40,20 +40,19 @@ class CollegePaginationScreenViewModel @Inject constructor(
     }
 
     fun fetchColleges() {
-        if (_isNextPageLoading.value) return
+        if (_isNextPageLoading.value || (count!=endCursor && count< endCursor)) return
 
         viewModelScope.launch {
             _isNextPageLoading.value = true
 
             try {
                 val result = getPaginationCollegeUseCase.execute(LIMIT, endCursor)
-
                 _data.value += result?.collegeEntity!!
 
                 endCursor = result.nextPage!!
                 count = result.total
             } catch (e: Exception) {
-                // Handle error
+                _isNextPageLoading.value = false
             } finally {
                 _isNextPageLoading.value = false
             }

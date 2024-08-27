@@ -96,7 +96,8 @@ class ApolloGraphQlClientImpl (
         val createCollegeMutation = CreateCollegeMutation(
             name = collegeRequestDTO.name,
             location = collegeRequestDTO.location,
-            establishedYear = collegeRequestDTO.establishedYear
+            establishedYear = collegeRequestDTO.establishedYear,
+            profileUrl = "https://www.upenn.edu/"
         )
         return try {  apolloClient
             .mutation(createCollegeMutation)

@@ -1,8 +1,9 @@
-mutation CreateCollege($name: String!, $location:String!, $establishedYear:String!) {
-    createCollege(establishedYear: $establishedYear, location: $location, name: $name) {
+mutation CreateCollege($name: String!, $location:String!, $establishedYear:String!, $profileUrl:String!) {
+    createCollege(establishedYear: $establishedYear, location: $location, name: $name, profileUrl: $profileUrl) {
         establishedYear
         id
         location
-        name
+        name,
+        profileUrl
     }
 }
