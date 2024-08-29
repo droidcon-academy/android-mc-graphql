@@ -15,7 +15,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.droidcon.graphqlmaster.presentation.AppNavHost
+import com.droidcon.graphqlmaster.presentation.navhost.AppNavHost
 import com.droidcon.graphqlmaster.ui.theme.GraphQLMasterTheme
 import dagger.hilt.android.AndroidEntryPoint
 

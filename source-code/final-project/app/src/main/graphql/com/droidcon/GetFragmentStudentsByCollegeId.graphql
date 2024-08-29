@@ -1,0 +1,21 @@
+fragment student on StudentType{
+    id
+    name
+    dob
+    gender
+    profileUrl
+    collegeId
+}
+
+query GetFragmentStudentsByCollegeId($collegeId: Int!) {
+     collegeWithStudents(collegeId: $collegeId) {
+       id
+       name
+       establishedYear
+       location
+       profileUrl
+         students {
+             ...student
+         }
+     }
+}

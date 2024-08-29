@@ -9,7 +9,9 @@ import com.droidcon.graphqlmaster.data.ApolloGraphQlClientImpl
 import com.droidcon.graphqlmaster.domain.IGraphQLClient
 import com.droidcon.graphqlmaster.domain.usecase.CreateCollegeUseCase
 import com.droidcon.graphqlmaster.domain.usecase.CreateStudentUseCase
+import com.droidcon.graphqlmaster.domain.usecase.GetCollegeByCollegeIdUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetCollegeUseCase
+import com.droidcon.graphqlmaster.domain.usecase.GetFragmentStudentByCollegeIdUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetPaginationCollegeUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetStudentUseCase
 import com.droidcon.graphqlmaster.util.BASEURL
@@ -77,6 +79,18 @@ object AppModule {
     @Singleton
     fun providePaginationCollegeUseCase(graphQLClient: IGraphQLClient): GetPaginationCollegeUseCase {
         return GetPaginationCollegeUseCase(graphQLClient)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCollegeByCollegeIdUseCase(graphQLClient: IGraphQLClient): GetCollegeByCollegeIdUseCase {
+        return GetCollegeByCollegeIdUseCase(graphQLClient)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetFragmentStudentByCollegeIdUseCase(graphQLClient: IGraphQLClient): GetFragmentStudentByCollegeIdUseCase {
+        return GetFragmentStudentByCollegeIdUseCase(graphQLClient)
     }
 
 }

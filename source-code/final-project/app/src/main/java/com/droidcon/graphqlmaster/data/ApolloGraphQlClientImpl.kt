@@ -5,7 +5,9 @@ import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.exception.ApolloHttpException
 import com.droidcon.CreateCollegeMutation
 import com.droidcon.CreateStudentMutation
+import com.droidcon.GetCollegesByCollegeIdQuery
 import com.droidcon.GetCollegesQuery
+import com.droidcon.GetFragmentStudentsByCollegeIdQuery
 import com.droidcon.GetPaginatedCollegesQuery
 import com.droidcon.GetStudentByCollegeIdQuery
 import com.droidcon.StudentsQuery
@@ -24,6 +26,20 @@ class ApolloGraphQlClientImpl (
     private val apolloClient: ApolloClient,
     private val apolloClientWS: ApolloClient
 ): IGraphQLClient {
+    override suspend fun getCollegeByCollegeId(collegeId: Int): CollegeEntity? {
+        return try {
+            apolloClient
+                .query(GetCollegesByCollegeIdQuery(collegeId))
+                .execute()
+                .data
+                ?.collegeById
+                ?.toCollegeEntity()
+        } catch (e: ApolloHttpException) {
+           null
+        }
+
+    }
+
     override suspend fun getColleges(): List<CollegeEntity> {
         return try {
              apolloClient
@@ -35,6 +51,18 @@ class ApolloGraphQlClientImpl (
                 ?: emptyList()
         } catch (e: ApolloHttpException) {
             emptyList()
+        }
+    }
+
+    override suspend fun getFragmentStudentByCollegeId(collegeId: Int): CollegeEntity? {
+        return try {
+            apolloClient
+                .query(GetFragmentStudentsByCollegeIdQuery(collegeId))
+                .execute()
+                .data
+                ?.collegeWithStudents?.toCollegeEntity()
+        } catch (e: ApolloHttpException) {
+            null
         }
     }
 
@@ -62,7 +90,7 @@ class ApolloGraphQlClientImpl (
 }
     }
 
-    override suspend fun getStudentByCollegeId(collegeId: Int): List<StudentEntity> {
+    override suspend fun getStudentsByCollegeId(collegeId: Int): List<StudentEntity> {
         return try {  apolloClient
             .query(GetStudentByCollegeIdQuery(collegeId))
             .execute()

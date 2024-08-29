@@ -5,5 +5,6 @@ data class CollegeEntity(
     val name: String,
     val establishedYear: String,
     val location: String,
-    val profileUrl:String
+    val profileUrl:String,
+    val studentEntity: List<StudentEntity> = listOf()
 )

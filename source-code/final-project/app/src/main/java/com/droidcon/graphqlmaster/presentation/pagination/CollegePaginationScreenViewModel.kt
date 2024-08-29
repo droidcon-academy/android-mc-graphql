@@ -1,19 +1,12 @@
-package com.droidcon.graphqlmaster.presentation
+package com.droidcon.graphqlmaster.presentation.pagination
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidcon.graphqlmaster.data.dto.CollegeRequestDTO
 import com.droidcon.graphqlmaster.domain.model.CollegeEntity
-import com.droidcon.graphqlmaster.domain.usecase.CreateCollegeUseCase
-import com.droidcon.graphqlmaster.domain.usecase.GetCollegeUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetPaginationCollegeUseCase
-import com.droidcon.graphqlmaster.domain.usecase.GetStudentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -1,0 +1,9 @@
+query GetCollegesByCollegeId($collegeId: Int!) {
+     collegeById(collegeId: $collegeId) {
+       id
+       name
+       establishedYear
+       location
+       profileUrl
+     }
+}

@@ -1,4 +1,4 @@
-package com.droidcon.graphqlmaster.presentation
+package com.droidcon.graphqlmaster.presentation.subscription
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

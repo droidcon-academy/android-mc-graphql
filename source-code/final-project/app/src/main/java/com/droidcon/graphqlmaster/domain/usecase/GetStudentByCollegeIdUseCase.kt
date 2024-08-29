@@ -9,6 +9,6 @@ class GetStudentByCollegeIdUseCase @Inject constructor (
 ) {
 
     suspend fun execute(collegeId: Int):List<StudentEntity>{
-        return graphQLClient.getStudentByCollegeId(collegeId).sortedBy { it.id }
+        return graphQLClient.getStudentsByCollegeId(collegeId).sortedBy { it.id }
     }
 }

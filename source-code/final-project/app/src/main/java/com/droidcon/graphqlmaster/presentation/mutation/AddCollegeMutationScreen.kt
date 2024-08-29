@@ -1,6 +1,5 @@
-package com.droidcon.graphqlmaster.presentation
+package com.droidcon.graphqlmaster.presentation.mutation
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,29 +31,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.droidcon.graphqlmaster.component.IconButton
 import com.droidcon.graphqlmaster.component.PrimaryButton
 import com.droidcon.graphqlmaster.data.dto.CollegeRequestDTO
 import com.droidcon.graphqlmaster.domain.model.CollegeEntity
-import com.droidcon.graphqlmaster.presentation.navhost.NavigationItem
 
 @Composable
-fun CollegeScreen(
-    state: CollegeScreenViewModel.CollegeState,
-    onSelectCollege: (code: Int) -> Unit,
+fun AddCollegeMutationScreen(
+    state: AddCollegeMutationScreenVM.CollegeState,
     onSubmitCollege: (collegeRequestDTO: CollegeRequestDTO) -> Unit,
-    navController: NavHostController
 ) {
-    CollegeScreenContent(state, onSelectCollege,onSubmitCollege, navController)
+    AddCollegeMutationScreenContent(state,onSubmitCollege)
 }
 
 @Composable
-private fun CollegeScreenContent(
-    state: CollegeScreenViewModel.CollegeState,
-    onSelectCollege: (code: Int) -> Unit,
+private fun AddCollegeMutationScreenContent(
+    state: AddCollegeMutationScreenVM.CollegeState,
     onSubmitCollege: (collegeRequestDTO: CollegeRequestDTO) -> Unit,
-    navController: NavHostController
 ) {
     var showSheet by remember { mutableStateOf(false) }
 
@@ -100,9 +93,6 @@ private fun CollegeScreenContent(
                             college = college,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable {
-                                    navController.navigate(NavigationItem.Student.createRoute(collegeId = college.id))
-                                    onSelectCollege(college.id) }
                                 .padding(16.dp)
 
                         )
