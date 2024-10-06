@@ -129,6 +129,27 @@ class Mutation:
         return CollegeType(id=college.id, name=college.name, location=college.location,
                            established_year=college.established_year, profile_url=college.profile_url)
 
+
+    @strawberry.mutation
+    async def update_college(self, college_id: int, name: Optional[str] = None, location: Optional[str] = None, established_year: Optional[str] = None, profile_url: Optional[str] = None) -> CollegeType:
+        db = get_db()
+        college = db.query(College).filter(College.id == college_id).first()
+        if not college:
+            raise ValueError("College not found")
+
+        if name is not None:
+            college.name = name
+        if location is not None:
+            college.location = location
+        if established_year is not None:
+            college.established_year = established_year
+        if profile_url is not None:
+            college.profile_url = profile_url
+
+        db.commit()
+        db.refresh(college)
+        return CollegeType(id=college.id, name=college.name, location=college.location, established_year=college.established_year, profile_url=college.profile_url)
+
     @strawberry.mutation
     async def delete_college(self, college_id: int) -> ResponseType:
         db = get_db()

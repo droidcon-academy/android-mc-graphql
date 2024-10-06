@@ -1,6 +1,5 @@
 package com.droidcon.graphqlmaster.presentation.query
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,9 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.droidcon.graphqlmaster.component.PrimaryButton
-import com.droidcon.graphqlmaster.domain.model.CollegeEntity
 import com.droidcon.graphqlmaster.domain.model.StudentEntity
-import com.droidcon.graphqlmaster.presentation.navhost.NavigationItem
 
 @Composable
 fun FragmentQueryScreen(
