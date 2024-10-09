@@ -69,6 +69,8 @@ type PaginationCollegeType {
 type Mutation {
   createCollege(name: String!, location: String!, establishedYear: String!, profileUrl: String!): CollegeType!
 
+  updateCollege(collegeId: Int!, name: String = null, location: String = null, establishedYear: String = null, profileUrl: String = null): CollegeType!
+
   deleteCollege(collegeId: Int!): ResponseType!
 
   createStudent(name: String!, dob: String!, gender: String!, profileUrl: String!, collegeId: Int!): StudentType!
@@ -81,7 +83,7 @@ type ResponseType {
 }
 
 type Subscription {
-  subscribeStudent(collegeId: Int!): StudentType!
+  subscribeCollege(collegeId: Int!): StudentType!
 }
 
 schema {

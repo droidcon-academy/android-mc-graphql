@@ -13,6 +13,8 @@ import androidx.navigation.compose.rememberNavController
 import com.droidcon.graphqlmaster.presentation.HomeScreen
 import com.droidcon.graphqlmaster.presentation.mutation.AddCollegeMutationScreen
 import com.droidcon.graphqlmaster.presentation.mutation.AddCollegeMutationScreenVM
+import com.droidcon.graphqlmaster.presentation.mutation.UpdateCollegeMutationScreen
+import com.droidcon.graphqlmaster.presentation.mutation.UpdateCollegeMutationScreenVM
 import com.droidcon.graphqlmaster.presentation.pagination.CollegePaginationScreen
 import com.droidcon.graphqlmaster.presentation.pagination.CollegePaginationScreenViewModel
 import com.droidcon.graphqlmaster.presentation.query.FragmentQueryScreen
@@ -23,8 +25,6 @@ import com.droidcon.graphqlmaster.presentation.query.SingleResourceQueryScreen
 import com.droidcon.graphqlmaster.presentation.query.SingleRespurceQueryScreenVM
 import com.droidcon.graphqlmaster.presentation.subscription.CollegeSubscriptionScreen
 import com.droidcon.graphqlmaster.presentation.subscription.CollegeSubscriptionScreenVM
-import com.droidcon.graphqlmaster.presentation.subscription.StudentScreen
-import com.droidcon.graphqlmaster.presentation.subscription.StudentScreenViewModel
 
 @Composable
 fun AppNavHost(
@@ -88,12 +88,25 @@ fun AppNavHost(
             }
         }
 
-        composable(NavigationItem.Mutation.route) {
+        composable(NavigationItem.AddCollegeMutation.route) {
             val viewModel = hiltViewModel<AddCollegeMutationScreenVM>()
             val state by viewModel.state.collectAsState()
 
             Column(modifier = Modifier) {
                 AddCollegeMutationScreen(
+                    state = state,
+                    onSubmitCollege = viewModel::submitCollege,
+                )
+
+            }
+        }
+
+        composable(NavigationItem.UpdateCollegeMutation.route) {
+            val viewModel = hiltViewModel<UpdateCollegeMutationScreenVM>()
+            val state by viewModel.state.collectAsState()
+
+            Column(modifier = Modifier) {
+                UpdateCollegeMutationScreen(
                     state = state,
                     onSubmitCollege = viewModel::submitCollege,
                 )
@@ -108,28 +121,13 @@ fun AppNavHost(
             Column(modifier = Modifier) {
                 CollegeSubscriptionScreen(
                     state = state,
-                    onSelectCollege = viewModel::selectCollege,
-                    navController
+                    fetchCollege = viewModel::fetchCollege,
                 )
 
             }
         }
 
-        composable(NavigationItem.Student.route+"/{collegeId}") {
-                navBackStackEntry ->
-            val viewModel: StudentScreenViewModel = hiltViewModel(navBackStackEntry)
-            val data by viewModel.data.collectAsState()
-            val isLoading by viewModel.isLoading.collectAsState()
-
-            Column(modifier = Modifier) {
-                StudentScreen(
-                    data = data,
-                    isLoading = isLoading
-                )
-            }
-        }
-
-        composable(NavigationItem.PAGINATIONCOLLEGE.route) {
+        composable(NavigationItem.PaginationCollege.route) {
             val viewModel = hiltViewModel<CollegePaginationScreenViewModel>()
 
             Column(modifier = Modifier) {
@@ -143,14 +141,16 @@ enum class Screen {
     SINGLE_RESOURCE_QUERY,
     MULTIPLE_RESOURCE_QUERY,
     FRAGMENT_QUERY,
-    MUTATION,
+    ADD_COLLEGE_MUTATION,
+    UPDATE_COLLEGE_MUTATION,
     SUBSCRIPTION,
     STUDENT,
     HOME,
     PAGINATION_COLLEGE,
 }
 sealed class NavigationItem(val route: String) {
-    data object Mutation : NavigationItem(Screen.MUTATION.name)
+    data object AddCollegeMutation : NavigationItem(Screen.ADD_COLLEGE_MUTATION.name)
+    data object UpdateCollegeMutation : NavigationItem(Screen.UPDATE_COLLEGE_MUTATION.name)
     data object Subscription : NavigationItem(Screen.SUBSCRIPTION.name)
     data object SingleResourceQuery : NavigationItem(Screen.SINGLE_RESOURCE_QUERY.name)
     data object MultipleResourceQuery : NavigationItem(Screen.MULTIPLE_RESOURCE_QUERY.name)
@@ -158,6 +158,6 @@ sealed class NavigationItem(val route: String) {
     data object Student : NavigationItem(Screen.STUDENT.name) {
         fun createRoute(collegeId: Int) = Screen.STUDENT.name+"/$collegeId"
     }
-    data object PAGINATIONCOLLEGE : NavigationItem(Screen.PAGINATION_COLLEGE.name)
+    data object PaginationCollege : NavigationItem(Screen.PAGINATION_COLLEGE.name)
     data object HOME : NavigationItem(Screen.HOME.name)
 }

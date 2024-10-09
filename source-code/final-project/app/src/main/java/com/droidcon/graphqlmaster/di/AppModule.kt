@@ -1,19 +1,14 @@
 package com.droidcon.graphqlmaster.di
 
 import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.network.http.HttpNetworkTransport
-import com.apollographql.apollo3.network.okHttpClient
-import com.apollographql.apollo3.network.ws.GraphQLWsProtocol
-import com.apollographql.apollo3.network.ws.WebSocketNetworkTransport
 import com.droidcon.graphqlmaster.data.ApolloGraphQlClientImpl
 import com.droidcon.graphqlmaster.domain.IGraphQLClient
 import com.droidcon.graphqlmaster.domain.usecase.CreateCollegeUseCase
-import com.droidcon.graphqlmaster.domain.usecase.CreateStudentUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetCollegeByCollegeIdUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetCollegeUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetFragmentStudentByCollegeIdUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetPaginationCollegeUseCase
-import com.droidcon.graphqlmaster.domain.usecase.GetStudentUseCase
+import com.droidcon.graphqlmaster.domain.usecase.UpdateCollegeUseCase
 import com.droidcon.graphqlmaster.util.BASEURL
 import com.droidcon.graphqlmaster.util.BASEURLWS
 import dagger.Module
@@ -53,20 +48,20 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideGetCollegeByCollegeIdUseCase(graphQLClient: IGraphQLClient): GetCollegeByCollegeIdUseCase {
+        return GetCollegeByCollegeIdUseCase(graphQLClient)
+    }
+
+    @Provides
+    @Singleton
     fun provideGetCollegeUseCase(graphQLClient: IGraphQLClient): GetCollegeUseCase {
         return GetCollegeUseCase(graphQLClient)
     }
 
     @Provides
     @Singleton
-    fun provideGetStudentUseCase(graphQLClient: IGraphQLClient): GetStudentUseCase {
-        return GetStudentUseCase(graphQLClient)
-    }
-
-    @Provides
-    @Singleton
-    fun provideCreateStudentUseCase(graphQLClient: IGraphQLClient): CreateStudentUseCase {
-        return CreateStudentUseCase(graphQLClient)
+    fun provideGetFragmentStudentByCollegeIdUseCase(graphQLClient: IGraphQLClient): GetFragmentStudentByCollegeIdUseCase {
+        return GetFragmentStudentByCollegeIdUseCase(graphQLClient)
     }
 
     @Provides
@@ -77,20 +72,14 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideUpdateCollegeUseCase(graphQLClient: IGraphQLClient): UpdateCollegeUseCase {
+        return UpdateCollegeUseCase(graphQLClient)
+    }
+
+    @Provides
+    @Singleton
     fun providePaginationCollegeUseCase(graphQLClient: IGraphQLClient): GetPaginationCollegeUseCase {
         return GetPaginationCollegeUseCase(graphQLClient)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetCollegeByCollegeIdUseCase(graphQLClient: IGraphQLClient): GetCollegeByCollegeIdUseCase {
-        return GetCollegeByCollegeIdUseCase(graphQLClient)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetFragmentStudentByCollegeIdUseCase(graphQLClient: IGraphQLClient): GetFragmentStudentByCollegeIdUseCase {
-        return GetFragmentStudentByCollegeIdUseCase(graphQLClient)
     }
 
 }

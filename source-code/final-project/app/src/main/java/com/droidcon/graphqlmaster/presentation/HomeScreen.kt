@@ -166,7 +166,7 @@ fun HomeScreen(navController: NavHostController) {
                 .fillMaxWidth()
                 .padding(horizontal= 16.dp, vertical = 4.dp)
                 .clickable {
-                    navController.navigate(NavigationItem.Mutation.route)
+                    navController.navigate(NavigationItem.AddCollegeMutation.route)
                 }
 
         ) {
@@ -174,7 +174,7 @@ fun HomeScreen(navController: NavHostController) {
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text = "Mutation",
+                    text = "Add college mutation",
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -198,6 +198,46 @@ fun HomeScreen(navController: NavHostController) {
                 }
             }
         }
+
+        Card(
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal= 16.dp, vertical = 4.dp)
+                .clickable {
+                    navController.navigate(NavigationItem.UpdateCollegeMutation.route)
+                }
+
+        ) {
+            Column( modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = "Update college mutation",
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Text(
+                    text = "Update college information",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.secondary
+                )
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    AssistChip(
+                        onClick = { },
+                        label = { Text("Mutation") },
+                    )
+                    AssistChip(
+                        onClick = { },
+                        label = { Text("college") },
+                    )
+                }
+            }
+        }
+
 
         Text(
             text = "Subscription",
@@ -260,7 +300,7 @@ fun HomeScreen(navController: NavHostController) {
                 .fillMaxWidth()
                 .padding(16.dp)
                 .clickable {
-                    navController.navigate(NavigationItem.PAGINATIONCOLLEGE.route)
+                    navController.navigate(NavigationItem.PaginationCollege.route)
                 }
 
         ) {

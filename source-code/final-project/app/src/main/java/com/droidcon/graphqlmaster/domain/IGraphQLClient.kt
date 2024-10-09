@@ -1,8 +1,7 @@
 package com.droidcon.graphqlmaster.domain
 
-import com.droidcon.graphqlmaster.data.dto.CollegeRequestDTO
-import com.droidcon.graphqlmaster.data.dto.StudentRequestDTO
 import com.droidcon.graphqlmaster.domain.model.CollegeEntity
+import com.droidcon.graphqlmaster.domain.model.CollegeRequestEntity
 import com.droidcon.graphqlmaster.domain.model.PaginationCollegeEntity
 import com.droidcon.graphqlmaster.domain.model.StudentEntity
 import kotlinx.coroutines.flow.Flow
@@ -11,12 +10,8 @@ interface IGraphQLClient {
     suspend fun getCollegeByCollegeId(collegeId:Int):CollegeEntity?
     suspend fun getColleges():List<CollegeEntity>
     suspend fun getFragmentStudentByCollegeId(collegeId:Int):CollegeEntity?
+    suspend fun addCollege(collegeRequestEntity: CollegeRequestEntity):CollegeEntity?
+    suspend fun updateCollege(collegeRequestEntity: CollegeRequestEntity):CollegeEntity?
+    suspend fun subscribeToCollege(collegeId: Int): Flow<StudentEntity>
     suspend fun getPaginationColleges(limit: Int, skip:Int): PaginationCollegeEntity?
-    suspend fun getStudents():List<StudentEntity>
-    suspend fun getStudentsByCollegeId(collegeId:Int):List<StudentEntity>
-
-    suspend fun addStudent(studentRequestDTO: StudentRequestDTO):StudentEntity?
-    suspend fun addCollege(collegeRequestDTO: CollegeRequestDTO):CollegeEntity?
-
-    fun subscribeToStudentAdded(collegeId: Int): Flow<StudentEntity>
 }

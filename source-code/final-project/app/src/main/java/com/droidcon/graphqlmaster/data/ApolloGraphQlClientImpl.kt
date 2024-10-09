@@ -3,19 +3,14 @@ package com.droidcon.graphqlmaster.data
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.exception.ApolloHttpException
-import com.droidcon.CreateCollegeMutation
-import com.droidcon.CreateStudentMutation
 import com.droidcon.GetCollegesByCollegeIdQuery
 import com.droidcon.GetCollegesQuery
 import com.droidcon.GetFragmentStudentsByCollegeIdQuery
 import com.droidcon.GetPaginatedCollegesQuery
-import com.droidcon.GetStudentByCollegeIdQuery
-import com.droidcon.StudentsQuery
-import com.droidcon.SubscribeStudentSubscription
-import com.droidcon.graphqlmaster.data.dto.CollegeRequestDTO
-import com.droidcon.graphqlmaster.data.dto.StudentRequestDTO
+import com.droidcon.SubscribeCollegeSubscription
 import com.droidcon.graphqlmaster.domain.IGraphQLClient
 import com.droidcon.graphqlmaster.domain.model.CollegeEntity
+import com.droidcon.graphqlmaster.domain.model.CollegeRequestEntity
 import com.droidcon.graphqlmaster.domain.model.PaginationCollegeEntity
 import com.droidcon.graphqlmaster.domain.model.StudentEntity
 import kotlinx.coroutines.flow.Flow
@@ -74,77 +69,39 @@ class ApolloGraphQlClientImpl (
             ?.paginationColleges?.toPaginationCollegeEntity()
     } catch (e: ApolloHttpException) {
        null
-    }
+     }
     }
 
-    override suspend fun getStudents(): List<StudentEntity> {
+    override suspend fun addCollege(collegeRequestEntity: CollegeRequestEntity): CollegeEntity? {
         return try {  apolloClient
-            .query(StudentsQuery())
-            .execute()
-            .data
-            ?.students
-            ?.map { it.toStudentEntity() }
-            ?: emptyList()
-    } catch (e: ApolloHttpException) {
-    emptyList()
-}
-    }
-
-    override suspend fun getStudentsByCollegeId(collegeId: Int): List<StudentEntity> {
-        return try {  apolloClient
-            .query(GetStudentByCollegeIdQuery(collegeId))
-            .execute()
-            .data
-            ?.studentsByCollegeId
-            ?.map { it.toStudentEntity() }
-            ?: emptyList()
-    } catch (e: ApolloHttpException) {
-    emptyList()
-}
-    }
-
-    override suspend fun addStudent(studentRequestDTO: StudentRequestDTO): StudentEntity? {
-        val createStudentMutation = CreateStudentMutation(
-            collegeId = studentRequestDTO.collegeId,
-            name = studentRequestDTO.name,
-            dob = studentRequestDTO.dob,
-            gender = studentRequestDTO.gender,
-            profileUrl = "")
-        return try {   apolloClient
-            .mutation(createStudentMutation)
-            .execute()
-            .data
-            ?.createStudent?.toCreateStudentEntity()!!
-    } catch (e: ApolloHttpException) {
-    null
-}
-    }
-
-    override suspend fun addCollege(collegeRequestDTO: CollegeRequestDTO): CollegeEntity? {
-        val createCollegeMutation = CreateCollegeMutation(
-            name = collegeRequestDTO.name,
-            location = collegeRequestDTO.location,
-            establishedYear = collegeRequestDTO.establishedYear,
-            profileUrl = "https://www.upenn.edu/"
-        )
-        return try {  apolloClient
-            .mutation(createCollegeMutation)
+            .mutation(collegeRequestEntity.toCreateCollegeMutation())
             .execute()
             .data
             ?.createCollege?.toCreateCollegeEntity()!!
     } catch (e: ApolloHttpException) {
-   null
-}
+        null
+    }
     }
 
-    override fun subscribeToStudentAdded(collegeId: Int): Flow<StudentEntity> = flow {
-        val subscription = SubscribeStudentSubscription(collegeId)
-         try { apolloClientWS.subscription(subscription).toFlow().catch {
-            print(it.message)
+    override suspend fun updateCollege(collegeRequestEntity: CollegeRequestEntity): CollegeEntity? {
+        return try {  apolloClient
+            .mutation(collegeRequestEntity.toUpdateCollegeMutation())
+            .execute()
+            .data
+            ?.updateCollege?.toUpdateCollegeEntity()!!
+        } catch (e: ApolloHttpException) {
+            null
         }
-            .collect { response: ApolloResponse<SubscribeStudentSubscription.Data> ->
+    }
+
+    override suspend fun subscribeToCollege(collegeId: Int): Flow<StudentEntity> = flow {
+        val subscription = SubscribeCollegeSubscription(collegeId)
+         try { apolloClientWS.subscription(subscription)
+             .toFlow().catch {
+            print(it.message) }
+            .collect { response: ApolloResponse<SubscribeCollegeSubscription.Data> ->
                 print(response)
-                response.data?.subscribeStudent?.let {
+                response.data?.subscribeCollege?.let {
                     emit(StudentEntity(
                         id = it.id,
                         name = it.name,
@@ -156,7 +113,7 @@ class ApolloGraphQlClientImpl (
                 }
             }
     } catch (e: ApolloHttpException) {
-    // TODO
-}
+        // TODO
+        }
     }
 }

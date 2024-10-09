@@ -188,7 +188,7 @@ class Mutation:
 @strawberry.type
 class Subscription:
     @strawberry.subscription
-    async def subscribe_student(self, college_id: int) -> StudentType:
+    async def subscribe_college(self, college_id: int) -> StudentType:
         async for student in student_stream(college_id):
             yield student
 
