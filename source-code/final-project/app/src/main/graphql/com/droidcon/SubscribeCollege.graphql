@@ -1,0 +1,10 @@
+subscription SubscribeCollege($collegeId: Int!) {
+    subscribeCollege(collegeId: $collegeId) {
+        collegeId
+        dob
+        gender
+        id
+        name
+        profileUrl
+    }
+}
