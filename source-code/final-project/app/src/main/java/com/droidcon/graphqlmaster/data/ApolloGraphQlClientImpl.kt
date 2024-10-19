@@ -3,6 +3,7 @@ package com.droidcon.graphqlmaster.data
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.exception.ApolloHttpException
+import com.droidcon.DeleteCollegeMutation
 import com.droidcon.GetCollegesByCollegeIdQuery
 import com.droidcon.GetCollegesQuery
 import com.droidcon.GetFragmentStudentsByCollegeIdQuery
@@ -21,6 +22,7 @@ class ApolloGraphQlClientImpl (
     private val apolloClient: ApolloClient,
     private val apolloClientWS: ApolloClient
 ): IGraphQLClient {
+
     override suspend fun getCollegeByCollegeId(collegeId: Int): CollegeEntity? {
         return try {
             apolloClient
@@ -91,6 +93,17 @@ class ApolloGraphQlClientImpl (
             ?.updateCollege?.toUpdateCollegeEntity()!!
         } catch (e: ApolloHttpException) {
             null
+        }
+    }
+
+    override suspend fun deleteCollege(collegeId: Int): Boolean {
+        return try {  apolloClient
+            .mutation(DeleteCollegeMutation(collegeId))
+            .execute()
+            .data
+            ?.deleteCollege?.let { true } ?: false
+        } catch (e: ApolloHttpException) {
+            false
         }
     }
 

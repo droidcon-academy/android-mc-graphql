@@ -13,6 +13,8 @@ import androidx.navigation.compose.rememberNavController
 import com.droidcon.graphqlmaster.presentation.HomeScreen
 import com.droidcon.graphqlmaster.presentation.mutation.AddCollegeMutationScreen
 import com.droidcon.graphqlmaster.presentation.mutation.AddCollegeMutationScreenVM
+import com.droidcon.graphqlmaster.presentation.mutation.DeleteCollegeMutationScreen
+import com.droidcon.graphqlmaster.presentation.mutation.DeleteCollegeMutationScreenVM
 import com.droidcon.graphqlmaster.presentation.mutation.UpdateCollegeMutationScreen
 import com.droidcon.graphqlmaster.presentation.mutation.UpdateCollegeMutationScreenVM
 import com.droidcon.graphqlmaster.presentation.pagination.CollegePaginationScreen
@@ -114,7 +116,20 @@ fun AppNavHost(
             }
         }
 
-        composable(NavigationItem.Subscription.route) {
+        composable(NavigationItem.DeleteCollegeMutation.route) {
+            val viewModel = hiltViewModel<DeleteCollegeMutationScreenVM>()
+            val state by viewModel.state.collectAsState()
+
+            Column(modifier = Modifier) {
+                DeleteCollegeMutationScreen(
+                    state = state,
+                    onDeleteCollege = viewModel::deleteCollege,
+                )
+
+            }
+        }
+
+        composable(NavigationItem.SubscribeToCollege.route) {
             val viewModel = hiltViewModel<CollegeSubscriptionScreenVM>()
             val state by viewModel.state.collectAsState()
 
@@ -143,7 +158,8 @@ enum class Screen {
     FRAGMENT_QUERY,
     ADD_COLLEGE_MUTATION,
     UPDATE_COLLEGE_MUTATION,
-    SUBSCRIPTION,
+    DELETE_COLLEGE_MUTATION,
+    SUBSCRIBE_TO_COLLEGE,
     STUDENT,
     HOME,
     PAGINATION_COLLEGE,
@@ -151,7 +167,8 @@ enum class Screen {
 sealed class NavigationItem(val route: String) {
     data object AddCollegeMutation : NavigationItem(Screen.ADD_COLLEGE_MUTATION.name)
     data object UpdateCollegeMutation : NavigationItem(Screen.UPDATE_COLLEGE_MUTATION.name)
-    data object Subscription : NavigationItem(Screen.SUBSCRIPTION.name)
+    data object DeleteCollegeMutation : NavigationItem(Screen.DELETE_COLLEGE_MUTATION.name)
+    data object SubscribeToCollege : NavigationItem(Screen.SUBSCRIBE_TO_COLLEGE.name)
     data object SingleResourceQuery : NavigationItem(Screen.SINGLE_RESOURCE_QUERY.name)
     data object MultipleResourceQuery : NavigationItem(Screen.MULTIPLE_RESOURCE_QUERY.name)
     data object FragmentQuery : NavigationItem(Screen.FRAGMENT_QUERY.name)

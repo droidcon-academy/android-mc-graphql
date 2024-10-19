@@ -4,6 +4,7 @@ import com.apollographql.apollo3.ApolloClient
 import com.droidcon.graphqlmaster.data.ApolloGraphQlClientImpl
 import com.droidcon.graphqlmaster.domain.IGraphQLClient
 import com.droidcon.graphqlmaster.domain.usecase.CreateCollegeUseCase
+import com.droidcon.graphqlmaster.domain.usecase.DeleteCollegeUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetCollegeByCollegeIdUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetCollegeUseCase
 import com.droidcon.graphqlmaster.domain.usecase.GetFragmentStudentByCollegeIdUseCase
@@ -75,6 +76,13 @@ object AppModule {
     fun provideUpdateCollegeUseCase(graphQLClient: IGraphQLClient): UpdateCollegeUseCase {
         return UpdateCollegeUseCase(graphQLClient)
     }
+
+    @Provides
+    @Singleton
+    fun provideDeleteCollegeUseCase(graphQLClient: IGraphQLClient): DeleteCollegeUseCase {
+        return DeleteCollegeUseCase(graphQLClient)
+    }
+
 
     @Provides
     @Singleton

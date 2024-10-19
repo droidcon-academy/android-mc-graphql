@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -95,5 +96,26 @@ fun EditIconButton(
         verticalArrangement = Arrangement.Center
     ) {
         Icon(Icons.Filled.Edit, "menu", tint = Color.White)
+    }
+}
+
+@Composable
+fun DeleteIconButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+    Column(
+        modifier
+            .height(56.dp)
+            .width(56.dp)
+            .clip(shape = RoundedCornerShape(24.dp))
+            .background(PurpleGrey40)
+            .clickable {
+                onClick()
+            },
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(Icons.Filled.Delete, "menu", tint = Color.White)
     }
 }

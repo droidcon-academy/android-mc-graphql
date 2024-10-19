@@ -1,0 +1,5 @@
+mutation DeleteCollege($collegeId:Int!) {
+    deleteCollege(collegeId: $collegeId) {
+        message
+    }
+}

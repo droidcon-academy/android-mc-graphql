@@ -13,5 +13,6 @@ interface IGraphQLClient {
     suspend fun addCollege(collegeRequestEntity: CollegeRequestEntity):CollegeEntity?
     suspend fun updateCollege(collegeRequestEntity: CollegeRequestEntity):CollegeEntity?
     suspend fun subscribeToCollege(collegeId: Int): Flow<StudentEntity>
+    suspend fun deleteCollege(collegeId: Int):Boolean
     suspend fun getPaginationColleges(limit: Int, skip:Int): PaginationCollegeEntity?
 }

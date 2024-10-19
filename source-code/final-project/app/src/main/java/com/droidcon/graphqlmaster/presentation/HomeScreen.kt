@@ -232,7 +232,51 @@ fun HomeScreen(navController: NavHostController) {
                     )
                     AssistChip(
                         onClick = { },
+
                         label = { Text("college") },
+                    )
+                }
+            }
+        }
+
+        Card(
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal= 16.dp, vertical = 4.dp)
+                .clickable {
+                    navController.navigate(NavigationItem.DeleteCollegeMutation.route)
+                }
+
+        ) {
+            Column( modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = "Delete college mutation",
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Text(
+                    text = "Update college information",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.secondary
+                )
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    AssistChip(
+                        onClick = { },
+                        label = { Text("Mutation") },
+                    )
+                    AssistChip(
+                        onClick = { },
+                        label = { Text("college") },
+                    )
+                    AssistChip(
+                        onClick = { },
+                        label = { Text("Delete") },
                     )
                 }
             }
@@ -251,7 +295,7 @@ fun HomeScreen(navController: NavHostController) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 8.dp)
                 .clickable {
-                    navController.navigate(NavigationItem.Subscription.route)
+                    navController.navigate(NavigationItem.SubscribeToCollege.route)
                 }
 
         ) {
