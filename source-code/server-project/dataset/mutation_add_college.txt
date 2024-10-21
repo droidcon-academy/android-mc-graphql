@@ -1,0 +1,301 @@
+mutation AddCollege1 {
+  createCollege(establishedYear: "1990", location: "New York", name: "New York College", profileUrl: "http://nycollege.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege2 {
+  createCollege(establishedYear: "2001", location: "Los Angeles", name: "Los Angeles Institute", profileUrl: "http://lainstitute.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege3 {
+  createCollege(establishedYear: "1985", location: "Chicago", name: "Chicago Technical College", profileUrl: "http://chicagotech.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege4 {
+  createCollege(establishedYear: "1978", location: "Houston", name: "Houston University", profileUrl: "http://houstonuniversity.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege5 {
+  createCollege(establishedYear: "2010", location: "Phoenix", name: "Phoenix Science College", profileUrl: "http://phoenixscience.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege6 {
+  createCollege(establishedYear: "1995", location: "San Diego", name: "San Diego Arts College", profileUrl: "http://sandiegoarts.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege7 {
+  createCollege(establishedYear: "2005", location: "Dallas", name: "Dallas Business School", profileUrl: "http://dallasbusiness.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege8 {
+  createCollege(establishedYear: "1988", location: "Austin", name: "Austin Design College", profileUrl: "http://austindesign.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege9 {
+  createCollege(establishedYear: "1972", location: "Seattle", name: "Seattle Maritime Academy", profileUrl: "http://seattlemaritime.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege10 {
+  createCollege(establishedYear: "1968", location: "Miami", name: "Miami Engineering College", profileUrl: "http://miamiengineering.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+
+mutation AddCollege11 {
+  createCollege(establishedYear: "1980", location: "Boston", name: "Boston Medical College", profileUrl: "http://bostonmedical.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege12 {
+  createCollege(establishedYear: "2008", location: "Denver", name: "Denver Technology Institute", profileUrl: "http://denvertech.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege13 {
+  createCollege(establishedYear: "1975", location: "Atlanta", name: "Atlanta College of Arts", profileUrl: "http://atlantacollege.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege14 {
+  createCollege(establishedYear: "1992", location: "Portland", name: "Portland Engineering School", profileUrl: "http://portlandengineering.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege15 {
+  createCollege(establishedYear: "2015", location: "San Francisco", name: "San Francisco College of Innovation", profileUrl: "http://sfcinnovation.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege16 {
+  createCollege(establishedYear: "2003", location: "Philadelphia", name: "Philadelphia School of Business", profileUrl: "http://phillybusiness.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege17 {
+  createCollege(establishedYear: "1989", location: "Detroit", name: "Detroit Technology University", profileUrl: "http://detroittech.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege18 {
+  createCollege(establishedYear: "1973", location: "Minneapolis", name: "Minneapolis School of Architecture", profileUrl: "http://minneapolisarchitecture.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege19 {
+  createCollege(establishedYear: "1997", location: "Orlando", name: "Orlando College of Science", profileUrl: "http://orlandoscience.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege20 {
+  createCollege(establishedYear: "2000", location: "Las Vegas", name: "Las Vegas School of Design", profileUrl: "http://lasvegasdesign.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege21 {
+  createCollege(establishedYear: "2005", location: "Austin", name: "Austin School of Engineering", profileUrl: "http://austinengineering.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege22 {
+  createCollege(establishedYear: "1990", location: "Miami", name: "Miami College of Arts", profileUrl: "http://miamiarts.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege23 {
+  createCollege(establishedYear: "1978", location: "Phoenix", name: "Phoenix Business College", profileUrl: "http://phoenixbusiness.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege24 {
+  createCollege(establishedYear: "1984", location: "Seattle", name: "Seattle School of Design", profileUrl: "http://seattledesign.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege25 {
+  createCollege(establishedYear: "1999", location: "Dallas", name: "Dallas Medical Institute", profileUrl: "http://dallasmedical.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege26 {
+  createCollege(establishedYear: "1968", location: "San Diego", name: "San Diego College of Science", profileUrl: "http://sandiegoscience.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege27 {
+  createCollege(establishedYear: "1974", location: "Charlotte", name: "Charlotte College of Technology", profileUrl: "http://charlottetech.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege28 {
+  createCollege(establishedYear: "2010", location: "Raleigh", name: "Raleigh School of Business", profileUrl: "http://raleighbusiness.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege29 {
+  createCollege(establishedYear: "2000", location: "Cleveland", name: "Cleveland Institute of Technology", profileUrl: "http://clevelandtech.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+
+mutation AddCollege30 {
+  createCollege(establishedYear: "1972", location: "Salt Lake City", name: "Salt Lake City College of Arts", profileUrl: "http://saltlakecityarts.edu") {
+    establishedYear
+    id
+    location
+    name
+    profileUrl
+  }
+}
+

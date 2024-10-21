@@ -303,7 +303,7 @@ fun HomeScreen(navController: NavHostController) {
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text = "Subscription",
+                    text = "Subscribe to college",
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.primary
                 )

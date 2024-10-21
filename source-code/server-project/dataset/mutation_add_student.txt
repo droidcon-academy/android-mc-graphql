@@ -1,0 +1,109 @@
+mutation AddStudent1 {
+  createStudent(collegeId: 1, dob: "1999-08-12", gender: "Male", name: "John Doe", profileUrl: "http://example.com/johndoe") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent2 {
+  createStudent(collegeId: 2, dob: "2000-04-25", gender: "Female", name: "Jane Smith", profileUrl: "http://example.com/janesmith") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent3 {
+  createStudent(collegeId: 3, dob: "1998-11-17", gender: "Male", name: "Michael Brown", profileUrl: "http://example.com/michaelbrown") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent4 {
+  createStudent(collegeId: 4, dob: "2001-02-10", gender: "Female", name: "Emily Davis", profileUrl: "http://example.com/emilydavis") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent5 {
+  createStudent(collegeId: 5, dob: "1997-06-30", gender: "Male", name: "Chris Johnson", profileUrl: "http://example.com/chrisjohnson") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent6 {
+  createStudent(collegeId: 6, dob: "2002-09-14", gender: "Female", name: "Sophia Wilson", profileUrl: "http://example.com/sophiawilson") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent7 {
+  createStudent(collegeId: 7, dob: "1999-01-19", gender: "Male", name: "Daniel Miller", profileUrl: "http://example.com/danielmiller") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent8 {
+  createStudent(collegeId: 8, dob: "2000-05-22", gender: "Female", name: "Olivia Taylor", profileUrl: "http://example.com/oliviataylor") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent9 {
+  createStudent(collegeId: 9, dob: "1996-12-03", gender: "Male", name: "Joshua Martinez", profileUrl: "http://example.com/joshuamartinez") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}
+
+mutation AddStudent10 {
+  createStudent(collegeId: 10, dob: "2001-03-08", gender: "Female", name: "Mia Anderson", profileUrl: "http://example.com/miaanderson") {
+    collegeId
+    gender
+    id
+    dob
+    name
+    profileUrl
+  }
+}

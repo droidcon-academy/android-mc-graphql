@@ -182,7 +182,7 @@ class Mutation:
             raise ValueError("Student not found")
         db.delete(student)
         db.commit()
-        return ResponseType(message="College deleted successfully")
+        return ResponseType(message="Student deleted successfully")
 
 
 @strawberry.type
