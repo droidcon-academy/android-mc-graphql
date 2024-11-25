@@ -31,7 +31,7 @@ import com.droidcon.graphqlmaster.component.PrimaryButton
 
 @Composable
 fun SingleResourceQueryScreen(
-    state: SingleRespurceQueryScreenVM.CollegeState,
+    state: SingleResourceQueryScreenVM.CollegeState,
     fetchCollege: (collegeId: Int) -> Unit,
 ) {
     SingleResourceQueryScreenContent(state, fetchCollege)
@@ -39,7 +39,7 @@ fun SingleResourceQueryScreen(
 
 @Composable
 private fun SingleResourceQueryScreenContent(
-    state: SingleRespurceQueryScreenVM.CollegeState,
+    state: SingleResourceQueryScreenVM.CollegeState,
     fetchCollege: (collegeId: Int) -> Unit,
 ) {
 

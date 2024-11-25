@@ -24,7 +24,7 @@ import com.droidcon.graphqlmaster.presentation.query.FragmentQueryScreenVM
 import com.droidcon.graphqlmaster.presentation.query.MultipleResourceQueryScreen
 import com.droidcon.graphqlmaster.presentation.query.MultipleResourceQueryScreenVM
 import com.droidcon.graphqlmaster.presentation.query.SingleResourceQueryScreen
-import com.droidcon.graphqlmaster.presentation.query.SingleRespurceQueryScreenVM
+import com.droidcon.graphqlmaster.presentation.query.SingleResourceQueryScreenVM
 import com.droidcon.graphqlmaster.presentation.subscription.CollegeSubscriptionScreen
 import com.droidcon.graphqlmaster.presentation.subscription.CollegeSubscriptionScreenVM
 
@@ -47,7 +47,7 @@ fun AppNavHost(
         }
 
         composable(NavigationItem.SingleResourceQuery.route) {
-            val viewModel = hiltViewModel<SingleRespurceQueryScreenVM>()
+            val viewModel = hiltViewModel<SingleResourceQueryScreenVM>()
             val state by viewModel.state.collectAsState()
 
             Column(modifier = Modifier) {
@@ -76,16 +76,6 @@ fun AppNavHost(
                 FragmentQueryScreen(
                     state = state,
                     fetchCollege = viewModel::fetchCollege,
-                )
-            }
-        }
-
-        composable(NavigationItem.MultipleResourceQuery.route) {
-            val viewModel = hiltViewModel<MultipleResourceQueryScreenVM>()
-            val state by viewModel.state.collectAsState()
-            Column(modifier = Modifier) {
-                MultipleResourceQueryScreen(
-                    state = state,
                 )
             }
         }
@@ -160,7 +150,6 @@ enum class Screen {
     UPDATE_COLLEGE_MUTATION,
     DELETE_COLLEGE_MUTATION,
     SUBSCRIBE_TO_COLLEGE,
-    STUDENT,
     HOME,
     PAGINATION_COLLEGE,
 }
@@ -172,9 +161,6 @@ sealed class NavigationItem(val route: String) {
     data object SingleResourceQuery : NavigationItem(Screen.SINGLE_RESOURCE_QUERY.name)
     data object MultipleResourceQuery : NavigationItem(Screen.MULTIPLE_RESOURCE_QUERY.name)
     data object FragmentQuery : NavigationItem(Screen.FRAGMENT_QUERY.name)
-    data object Student : NavigationItem(Screen.STUDENT.name) {
-        fun createRoute(collegeId: Int) = Screen.STUDENT.name+"/$collegeId"
-    }
     data object PaginationCollege : NavigationItem(Screen.PAGINATION_COLLEGE.name)
     data object HOME : NavigationItem(Screen.HOME.name)
 }
